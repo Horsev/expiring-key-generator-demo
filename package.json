@@ -1,0 +1,12 @@
+{
+  "name": "expiring-key-generator-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node demo.js"
+  },
+  "dependencies": {
+    "chalk": "^5",
+    "expiring-key-generator": "^1.0.0"
+  }
+}
