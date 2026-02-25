@@ -36,6 +36,29 @@ npm start
    Same date + same secret → same key  ✓ identical
 ```
 
+## Benchmark
+
+```bash
+npm run bench
+```
+
+```
+═══════════════════════════════════════════════════════════════
+  expiring-key-generator  —  Benchmark (memo vs plain)
+═══════════════════════════════════════════════════════════════
+
+  Function                           ops/sec   total ops duration
+  generateSecretKey                  334,748     669,503    2.00s
+
+  generateKey(date)                  763,709   1,527,418    2.00s
+  generateKey [memo]               1,980,576   3,961,152    2.00s  ×2.6
+
+  validateKey(hash,date,28)          305,220     610,440    2.00s
+  validateKey [memo]               1,528,303   3,056,607    2.00s  ×5.0
+```
+
+Memoization skips SHA256 hashing on cache hits, giving ~2.6x speedup for key generation and ~5x for validation.
+
 ## License
 
 MIT
