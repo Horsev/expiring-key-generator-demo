@@ -43,21 +43,17 @@ npm run bench
 ```
 
 ```
-═══════════════════════════════════════════════════════════════
-  expiring-key-generator  —  Benchmark (memo vs plain)
-═══════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════
+  expiring-key-generator  —  Benchmark
+═══════════════════════════════════════════════
 
   Function                           ops/sec   total ops duration
-  generateSecretKey                  334,748     669,503    2.00s
-
-  generateKey(date)                  763,709   1,527,418    2.00s
-  generateKey [memo]               1,980,576   3,961,152    2.00s  ×2.6
-
-  validateKey(hash,date,28)          305,220     610,440    2.00s
-  validateKey [memo]               1,528,303   3,056,607    2.00s  ×5.0
+  generateSecretKey                  306,356     612,716    2.00s
+  generateKey(date)                1,415,996   2,831,993    2.00s
+  validateKey(hash,date,28)        8,853,081  17,706,164    2.00s
 ```
 
-Memoization skips SHA256 hashing on cache hits, giving ~2.6x speedup for key generation and ~5x for validation.
+Validation is fast (~9M ops/sec) thanks to built-in caching in the library (v1.3.0+).
 
 ## License
 
